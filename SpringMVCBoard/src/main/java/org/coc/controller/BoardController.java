@@ -1,10 +1,10 @@
 package org.coc.controller;
 
-import java.util.List;
-
 import javax.inject.Inject;
 
 import org.coc.domain.BoardVO;
+import org.coc.domain.Criteria;
+import org.coc.domain.PageMaker;
 import org.coc.service.BoardService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,7 +12,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
@@ -46,8 +45,30 @@ public class BoardController {
 		model.addAttribute("list", service.selectAllBoard()); //model에 담아서 반환한다. 
 	}
 	
-	@RequestMapping(value="/listAll", method=RequestMethod.GET) 
-	public @ResponseBody List<BoardVO> listAll() throws Exception {
-		return service.selectAllBoard();
+//	@RequestMapping(value="/listAll", method=RequestMethod.GET) 
+//	public @ResponseBody List<BoardVO> listAll() throws Exception {
+//		return service.selectAllBoard();
+//	}
+	
+	
+	@RequestMapping(value="/listCri", method=RequestMethod.GET)
+	public void ListAll(Criteria cri, Model model) throws Exception {
+		logger.info("show all list cri....");
+		model.addAttribute("list", service.listCriteria(cri));
 	}
+	
+	@RequestMapping(value="/listPage", method=RequestMethod.GET)
+	public void ListPage(Criteria cri, Model model) throws Exception {
+		
+		logger.info(cri.toString());
+		model.addAttribute("list", service.listCriteria(cri));
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		pageMaker.setTotalCount(131);
+		
+		
+		model.addAttribute("pageMaker", pageMaker);
+	}
+	
+	
 }

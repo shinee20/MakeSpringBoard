@@ -1,11 +1,12 @@
-package org.coc.dao;
+package org.coc.service;
 
 import java.util.List;
 
 import javax.inject.Inject;
 
+import org.coc.dao.BoardDAO;
 import org.coc.domain.BoardVO;
-import org.coc.service.BoardService;
+import org.coc.domain.Criteria;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -44,7 +45,12 @@ public class BoardServiceImpl implements BoardService {
 		// TODO Auto-generated method stub
 		return dao.selectAllBoard();
 	}
-	
+
+	@Override
+	public List<BoardVO> listCriteria(Criteria cri) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.listCriteria(cri);
+	}
 	
 	
 }

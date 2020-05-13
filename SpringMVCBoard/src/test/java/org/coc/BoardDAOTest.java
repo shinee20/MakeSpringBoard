@@ -1,9 +1,12 @@
 package org.coc;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.coc.dao.BoardDAO;
 import org.coc.domain.BoardVO;
+import org.coc.domain.Criteria;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -36,5 +39,27 @@ public class BoardDAOTest {
 		dao.deleteBoard(1);
 		
 	}
+
+	@Test
+	public void testListPage()throws Exception {
+		int page = 3;
+		List<BoardVO> list = dao.listPage(page);
+		
+		for (BoardVO boardVO : list) {
+			logger.info(boardVO.toString());
+		}
+	}
 	
+	@Test
+	public void testListCriteria()throws Exception {
+		Criteria cri = new Criteria();
+		cri.setPage(2);
+		cri.setPerPageNum(20);
+		
+		List<BoardVO> list = dao.listCriteria(cri);
+		
+		for (BoardVO boardVO : list) {
+			logger.info(boardVO.toString());
+		}
+	}
 }

@@ -6,6 +6,7 @@ import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
 import org.coc.domain.BoardVO;
+import org.coc.domain.Criteria;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -46,6 +47,22 @@ public class BoardDAOImpl implements BoardDAO{
 		session.delete(namespace+".deleteBoard", bno);
 		
 	}
+	
+	@Override
+	public List<BoardVO> listPage(int page) throws Exception {
+		// TODO Auto-generated method stub
+		if (page <=0) page =1;
+		page = (page-1)*10;
+		
+		return session.selectList(namespace+".listPage", page);
+	}
 
+	@Override
+	public List<BoardVO> listCriteria(Criteria cri) throws Exception {
+		// TODO Auto-generated method stub
+		return session.selectList(namespace+".listCriteria", cri);
+	}
+
+	
 	
 }
