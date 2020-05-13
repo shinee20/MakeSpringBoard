@@ -1,5 +1,0 @@
-package org.coc.dao;
-
-public interface BoardDAO {
-
-}

@@ -1,8 +1,0 @@
-package org.coc.dao;
-
-public interface MemberVO {
-	public String getTime();
-	
-	public void insertMember(MemberVO vo);
-	
-}

@@ -1,5 +1,0 @@
-package org.coc.service;
-
-public interface BoardService {
-
-}
