@@ -1,0 +1,12 @@
+package org.coc.dao;
+
+import java.util.List;
+
+public interface BoardDAO {
+	public void insertBoard(BoardVO vo);
+	public BoardVO selectBoard();
+	public List<BoardVO> selectAllBoard();
+	public void updateBoard(String title);
+	public void deleteBoard();
+	
+}

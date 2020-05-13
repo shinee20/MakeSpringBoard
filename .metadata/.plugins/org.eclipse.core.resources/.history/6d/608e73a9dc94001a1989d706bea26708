@@ -1,0 +1,5 @@
+package org.coc.web.dao;
+
+public class MemberDAO {
+
+}
